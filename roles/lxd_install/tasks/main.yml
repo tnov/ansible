@@ -1,0 +1,9 @@
+---
+- name: snapd install
+  apt: name=snapd
+- name: debootstrap install
+  apt: name=debootstrap
+- name: bridge-utils install
+  apt: name=bridge-utils
+- name: lxd install
+  command: snap install lxd

@@ -1,0 +1,12 @@
+[xs35v4]
+xs35v4.local
+
+[xs35v4:vars]
+ansible_ssh_host=xs35v4.local
+ansible_ssh_user=debian
+ansible_ssh_pass=debian
+ansible_ssh_port=22
+ansible_sudo_pass=debian
+
+[all:children]
+xs35v4
