@@ -7,3 +7,27 @@
   apt: name=bridge-utils
 - name: lxd install
   command: snap install lxd
+- name: check bridge
+  shell: brctl show | grep {{ansible_bridge}} | wc -l
+  register: result
+- name: down bridge link
+  command: ip link set dev {{ansible_bridge}} down
+  when: result.stdout == '1'
+- name: delete bridge
+  command: brctl delbr {{ansible_bridge}}
+  when: result.stdout == '1'
+- name: create bridge
+  command: brctl addbr {{ansible_bridge}}
+- name: bridge add interface
+  command: brctl addif {{ansible_bridge}} {{ansible_nic}}
+- name: up bridge link
+  command: ip link set dev {{ansible_bridge}} up
+- name: down nic link
+  command: ip link set dev {{ansible_nic}} down
+- name: up nic link
+  command: ip link set dev {{ansible_nic}} up
+- name: add group
+  command: gpasswd -a {{lxd_user}} {{lxd_group}}
+- name: refresh ssh connection
+  meta: reset_connection
+

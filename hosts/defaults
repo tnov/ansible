@@ -7,6 +7,20 @@ ansible_ssh_user=debian
 ansible_ssh_pass=debian
 ansible_ssh_port=22
 ansible_sudo_pass=debian
+ansible_bridge=br0
+ansible_nic=enp2s0f2
+lxd_user=debian
+lxd_group=lxd
+
+#[pine64]
+#pine64.local
+
+#[pine64:vars]
+#ansible_ssh_host=pine64.local
+#ansible_ssh_user=
+#ansible_ssh_pass=
+#ansible_ssh_port=22
+#ansible_sudo_pass=
 
 [all:children]
 xs35v4
